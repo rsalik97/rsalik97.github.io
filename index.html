@@ -117,8 +117,9 @@ h1,h2,h3{text-wrap:balance}
 .shead .right{display:grid;gap:14px;align-content:start;padding-top:clamp(0px,2.2vw,34px)}
 .shead .right .small{max-width:46ch}
 .shead .right .pill{justify-self:start;margin-top:6px}
-.trio{display:flex;gap:clamp(12px,1.4vw,22px);align-items:stretch}
-.trio .zoom{display:block;flex:var(--ar) 1 0;min-width:0;aspect-ratio:var(--ar);border-radius:20px;overflow:hidden;background:#000}
+.trio{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:clamp(12px,1.4vw,22px)}
+.trio .zoom{display:block;min-width:0;aspect-ratio:16/10;border-radius:20px;overflow:hidden;background:#000}
+.trio .zoom:first-child{grid-row:span 2;aspect-ratio:auto;height:100%}
 .trio img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
 .trio .zoom:hover img{transform:scale(1.05)}
 
@@ -347,6 +348,7 @@ footer a{text-decoration:none}
 .logo-cell:hover{transform:translateY(-4px)}
 .logo-cell img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
 .logos-cap{margin-top:20px;color:var(--dim);font-size:15px}
+dialog.viewer{width:100%;height:100%;height:100dvh;max-width:none;max-height:none;margin:0;padding:0;border:0;outline:0;background:rgba(0,0,0,.96);color:var(--bone);inset:0}
 dialog.viewer::backdrop{background:rgba(0,0,0,.9)}
 .v-in{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:calc(16px + env(safe-area-inset-top,0px)) var(--gut) calc(18px + env(safe-area-inset-bottom,0px))}
 .v-top{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:56px}
@@ -356,7 +358,7 @@ dialog.viewer::backdrop{background:rgba(0,0,0,.9)}
 .v-close:hover,.v-nav button:hover{border-color:var(--bone)}
 .v-close svg,.v-nav svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none}
 .v-stage{display:grid;place-items:center;min-height:0;padding-block:14px}
-.v-stage video,.v-stage img{max-width:100%;max-height:calc(100vh - 200px);max-height:calc(100dvh - 200px);border-radius:8px}
+.v-stage video,.v-stage img{max-width:100%;width:auto;height:auto;max-height:calc(100vh - 200px);max-height:calc(100dvh - 200px);border-radius:8px}
 .v-stage video{background:#000}
 .v-bottom{display:flex;justify-content:space-between;align-items:center;min-height:52px}
 .v-nav{display:flex;gap:10px}
@@ -382,6 +384,16 @@ dialog.viewer::backdrop{background:rgba(0,0,0,.9)}
 .pills li{padding:10px 16px;border-radius:99px;background:rgba(255,255,255,.07);border:1px solid var(--hair);font-size:15px;font-weight:600}
 .sw-group:first-of-type .pills li:nth-child(-n+4){background:var(--bone);color:#000;border-color:var(--bone)}
 .logos{margin-top:clamp(40px,6vh,70px)!important}
+.pg-label{margin:clamp(28px,4vh,48px) 0 14px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.pgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(150px,15vw,260px);gap:clamp(10px,1.2vw,18px)}
+.pgrid .zoom{display:block;min-width:0;border-radius:18px;overflow:hidden;background:#000}
+.pgrid .zoom img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.pgrid .zoom:hover img{transform:scale(1.05)}
+.pgrid .zoom:nth-child(1){grid-column:span 2;grid-row:span 2}
+.pgrid .zoom:nth-child(4){grid-column:span 2}
+.pgrid.alt .zoom:nth-child(1){grid-column:3/span 2;grid-row:1/span 2}
+.pgrid.alt .zoom:nth-child(4){grid-column:1/span 2;grid-row:2}
+@media (max-width:760px){.pgrid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:34vw;gap:8px}.pgrid .zoom{border-radius:12px}.pgrid .zoom:nth-child(1),.pgrid.alt .zoom:nth-child(1){grid-column:1/-1;grid-row:span 2}.pgrid .zoom:nth-child(4),.pgrid.alt .zoom:nth-child(4){grid-column:1/-1;grid-row:auto}}
 .shots{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:clamp(10px,1.2vw,18px)!important}
 .shot{aspect-ratio:3/2!important}
 .shot img{object-fit:cover}
@@ -430,8 +442,8 @@ dialog.viewer::backdrop{background:rgba(0,0,0,.9)}
   .hero .roles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 16px;font-size:14px}
   .hero::after{content:"";position:absolute;inset:0;z-index:4;background:linear-gradient(0deg,rgba(17,6,4,.95) 0%,rgba(17,6,4,.7) 34%,transparent 60%);pointer-events:none}
   .nav-row .pill{display:none}
-  .trio{flex-wrap:wrap;gap:10px}
-  .trio .zoom{flex-basis:100%}
+  .trio{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+  .trio .zoom:first-child{grid-column:1/-1;grid-row:auto;aspect-ratio:16/10;height:auto}
   .trio .zoom{border-radius:12px}
   .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
   .phero .ph-side,.about-hero .ph-side,.contact-hero .ph-side{display:none}
@@ -496,9 +508,9 @@ dialog.viewer::backdrop{background:rgba(0,0,0,.9)}
         </div>
       </div>
       <div class="trio">
-        <button type="button" class="zoom" data-gallery="trio" style="--ar:.827" data-full="img/k-eid-green.webp" data-caption="Eid Mubarak, Kardan Schools"><img src="img/k-eid-green.webp" alt="Eid Mubarak poster for Kardan Schools" loading="lazy"></button>
-        <button type="button" class="zoom" data-gallery="trio" style="--ar:1.749" data-full="img/forge-hoodie.webp" data-caption="Forge Athletes hoodie"><img src="img/forge-hoodie.webp" alt="Forge Athletes hoodie" loading="lazy" style="object-position:50% 50%"></button>
-        <button type="button" class="zoom" data-gallery="trio" style="--ar:1.5" data-full="img/exchanger-photo-portrait.webp" data-caption="Exchangerzone campaign photography"><img src="img/exchanger-photo-portrait.webp" alt="Banknotes held towards the camera, campaign photography" loading="lazy"></button>
+        <button type="button" class="zoom" data-gallery="trio" data-full="mock/kardan-sp.webp" data-caption="Kardan Schools Strategic Plan 2020–25"><img src="mock/kardan-sp-sm.webp" srcset="mock/kardan-sp-sm.webp 1200w, mock/kardan-sp.webp 2400w" sizes="(max-width:760px) 100vw, 60vw" alt="Kardan Schools Strategic Plan, cover and an open spread" loading="lazy"></button>
+        <button type="button" class="zoom" data-gallery="trio" data-full="mock/exchanger-print.webp" data-caption="Exchangerzone company profile and brand manual"><img src="mock/exchanger-print-sm.webp" srcset="mock/exchanger-print-sm.webp 1200w, mock/exchanger-print.webp 2400w" sizes="(max-width:760px) 100vw, 60vw" alt="Exchangerzone company profile and brand manual covers" loading="lazy"></button>
+        <button type="button" class="zoom" data-gallery="trio" data-full="mock/creative-cards.webp" data-caption="The Creative Box business cards"><img src="mock/creative-cards-sm.webp" srcset="mock/creative-cards-sm.webp 1200w, mock/creative-cards.webp 2400w" sizes="(max-width:760px) 100vw, 60vw" alt="The Creative Box business cards, front and back" loading="lazy"></button>
       </div>
     </div>
   </section>
@@ -593,8 +605,6 @@ dialog.viewer::backdrop{background:rgba(0,0,0,.9)}
   <p class="ig-cap"><b>Exchangerzone</b> EZ Qastoona: pay for home appliances in instalments.</p>
 </div></div></div></div>
         <figure class="mock "><button type="button" class="mock-in" data-open-gallery="exchanger" aria-label="Exchangerzone brand manual spreads: logo construction and colour. Open the original artwork"><img src="mock/exchanger-spread.webp" srcset="mock/exchanger-spread-sm.webp 1200w, mock/exchanger-spread.webp 2400w" sizes="100vw" alt="Exchangerzone brand manual spreads: logo construction and colour" width="2400" height="1500" loading="lazy"></button></figure>
-        <div class="shots" style="margin-top:0"><button type="button" class="zoom shot" data-gallery="photo" data-full="img/exchanger-photo-portrait.webp" data-caption="Banknotes held towards the camera" aria-label="Enlarge photo: Banknotes held towards the camera"><img src="img/exchanger-photo-portrait.webp" alt="Banknotes held towards the camera" loading="lazy" width="1800" height="1200"></button><button type="button" class="zoom shot" data-gallery="photo" data-full="img/exchanger-photo-exchange.webp" data-caption="A transaction at the exchange counter" aria-label="Enlarge photo: A transaction at the exchange counter"><img src="img/exchanger-photo-exchange.webp" alt="A transaction at the exchange counter" loading="lazy" width="1800" height="1200"></button><button type="button" class="zoom shot" data-gallery="photo" data-full="img/exchanger-photo-still-life.webp" data-caption="Banknotes and coins" aria-label="Enlarge photo: Banknotes and coins"><img src="img/exchanger-photo-still-life.webp" alt="Banknotes and coins" loading="lazy" width="1800" height="1200"></button><button type="button" class="zoom shot" data-gallery="photo" data-full="img/exchanger-photo-coins.webp" data-caption="Coins on a reflective white surface" aria-label="Enlarge photo: Coins on a reflective white surface"><img src="img/exchanger-photo-coins.webp" alt="Coins on a reflective white surface" loading="lazy" width="1800" height="1200"></button></div>
-        <p class="small">Campaign photography, shot by me.</p>
         <div class="watch-row"><button type="button" class="watch" data-play="card"><span class="w-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span><span>Card Launch</span><span class="w-rt">0:41</span></button></div>
         <button type="button" class="more-art" data-open-gallery="exchanger">See all Exchangerzone artworks</button><button type="button" class="zoom" hidden data-gallery="exchanger" data-full="img/exchanger-brand-manual.webp" data-caption="Brand manual cover"></button><button type="button" class="zoom" hidden data-gallery="exchanger" data-full="img/exchanger-profile.webp" data-caption="Company profile cover"></button><button type="button" class="zoom" hidden data-gallery="exchanger" data-full="img/exchanger-logo-guidelines.webp" data-caption="Logo construction spread"></button><button type="button" class="zoom" hidden data-gallery="exchanger" data-full="img/exchanger-colour-guidelines.webp" data-caption="Colour spread"></button><button type="button" class="zoom" hidden data-gallery="exchanger" data-full="img/exchanger-social-01.webp" data-caption="Money transfer campaign"></button><button type="button" class="zoom" hidden data-gallery="exchanger" data-full="img/exchanger-currency-campaign.webp" data-caption="Currency exchange campaign"></button><button type="button" class="zoom" hidden data-gallery="exchanger" data-full="img/exchanger-social-02.webp" data-caption="EZ Qastoona loan campaign"></button><button type="button" class="zoom" hidden data-gallery="exchanger" data-full="img/exchanger-women-campaign.webp" data-caption="Women empowerment loan campaign"></button><button type="button" class="zoom" hidden data-gallery="exchanger" data-full="img/exchanger-flyer-front.webp" data-caption="Services flyer, front"></button><button type="button" class="zoom" hidden data-gallery="exchanger" data-full="img/exchanger-flyer-back.webp" data-caption="Services flyer, back"></button>
       </div>
@@ -643,6 +653,19 @@ dialog.viewer::backdrop{background:rgba(0,0,0,.9)}
         <div class="study wide-study"><figure class="mock flat"><button type="button" class="mock-in" data-open-gallery="aeroparcel" aria-label="Aeroparcel logistics brochure, outside and inside spreads. Open the original artwork"><img src="mock/aeroparcel-brochure.webp" srcset="mock/aeroparcel-brochure-sm.webp 1200w, mock/aeroparcel-brochure.webp 2400w" sizes="100vw" alt="Aeroparcel logistics brochure, outside and inside spreads" width="2400" height="1500" loading="lazy"></button></figure><div><h3>Aeroparcel</h3><p>Bifold brochure for a courier and cargo company</p></div><button type="button" class="zoom" hidden data-gallery="aeroparcel" data-full="img/aeroparcel-1.webp" data-caption="Brochure, outside"></button><button type="button" class="zoom" hidden data-gallery="aeroparcel" data-full="img/aeroparcel-2.webp" data-caption="Brochure, inside"></button><button type="button" class="zoom" hidden data-gallery="aeroparcel" data-full="img/aeroparcel-logo.webp" data-caption="Aeroparcel logo"></button></div>
       </div>
       <ul class="logos"><li><button type="button" class="zoom logo-cell" data-gallery="logos" data-full="img/kliwal-logo.webp" data-caption="Kliwal" aria-label="Enlarge Kliwal logo"><img src="img/kliwal-logo.webp" alt="Kliwal" loading="lazy"></button></li><li><button type="button" class="zoom logo-cell" data-gallery="logos" data-full="img/arghon-logo.webp" data-caption="Arghon Educational and Cultural Center" aria-label="Enlarge Arghon Educational and Cultural Center logo"><img src="img/arghon-logo.webp" alt="Arghon Educational and Cultural Center" loading="lazy"></button></li><li><button type="button" class="zoom logo-cell" data-gallery="logos" data-full="img/acn-logo.webp" data-caption="Afghan Community Nanaimo" aria-label="Enlarge Afghan Community Nanaimo logo"><img src="img/acn-logo.webp" alt="Afghan Community Nanaimo" loading="lazy"></button></li><li><button type="button" class="zoom logo-cell" data-gallery="logos" data-full="img/sepehr-logo.webp" data-caption="Sepehr" aria-label="Enlarge Sepehr logo"><img src="img/sepehr-logo.webp" alt="Sepehr" loading="lazy"></button></li><li><button type="button" class="zoom logo-cell" data-gallery="logos" data-full="img/nourishnest-logo.webp" data-caption="Nourishnest" aria-label="Enlarge Nourishnest logo"><img src="img/nourishnest-logo.webp" alt="Nourishnest" loading="lazy"></button></li><li><button type="button" class="zoom logo-cell" data-gallery="logos" data-full="img/aeroparcel-logo.webp" data-caption="Aeroparcel" aria-label="Enlarge Aeroparcel logo"><img src="img/aeroparcel-logo.webp" alt="Aeroparcel" loading="lazy"></button></li></ul>
+    </div>
+  </article>
+
+  <article class="case" id="photography" aria-labelledby="ph-h">
+    <div class="inner">
+      <div class="shead">
+        <div><span class="eyebrow">Photography</span><h2 class="h-xl" id="ph-h">Product and campaign photography</h2></div>
+        <div class="right"><p class="lead">I shoot most of my own campaign photos and the footage for my films.</p></div>
+      </div>
+      <p class="pg-label">Campaign shoot for Exchangerzone</p>
+      <div class="pgrid"><button type="button" class="zoom" data-gallery="photo" data-full="img/exchanger-photo-portrait.webp" data-caption="Banknotes held towards the camera" aria-label="Enlarge photo: Banknotes held towards the camera"><img src="img/exchanger-photo-portrait.webp" alt="Banknotes held towards the camera" loading="lazy"></button><button type="button" class="zoom" data-gallery="photo" data-full="img/exchanger-photo-exchange.webp" data-caption="A transaction at the exchange counter" aria-label="Enlarge photo: A transaction at the exchange counter"><img src="img/exchanger-photo-exchange.webp" alt="A transaction at the exchange counter" loading="lazy"></button><button type="button" class="zoom" data-gallery="photo" data-full="img/exchanger-photo-coins.webp" data-caption="Coins on a reflective white surface" aria-label="Enlarge photo: Coins on a reflective white surface"><img src="img/exchanger-photo-coins.webp" alt="Coins on a reflective white surface" loading="lazy"></button><button type="button" class="zoom" data-gallery="photo" data-full="img/exchanger-photo-still-life.webp" data-caption="Banknotes and coins" aria-label="Enlarge photo: Banknotes and coins"><img src="img/exchanger-photo-still-life.webp" alt="Banknotes and coins" loading="lazy"></button></div>
+      <p class="pg-label">Stills from my Kardan Schools shoots</p>
+      <div class="pgrid alt"><button type="button" class="zoom" data-gallery="photo" data-full="img/still-kispromo-22.webp" data-caption="Science lab, Kardan International School" aria-label="Enlarge photo: Science lab, Kardan International School"><img src="img/still-kispromo-22-sm.webp" alt="Science lab, Kardan International School" loading="lazy"></button><button type="button" class="zoom" data-gallery="photo" data-full="img/still-kispromo-40.webp" data-caption="A student sketching a portrait" aria-label="Enlarge photo: A student sketching a portrait"><img src="img/still-kispromo-40-sm.webp" alt="A student sketching a portrait" loading="lazy"></button><button type="button" class="zoom" data-gallery="photo" data-full="img/still-kispromo-10.webp" data-caption="Drawing on a tablet in class" aria-label="Enlarge photo: Drawing on a tablet in class"><img src="img/still-kispromo-10-sm.webp" alt="Drawing on a tablet in class" loading="lazy"></button><button type="button" class="zoom" data-gallery="photo" data-full="img/still-tvc-18.webp" data-caption="Music room, Kardan International School" aria-label="Enlarge photo: Music room, Kardan International School"><img src="img/still-tvc-18-sm.webp" alt="Music room, Kardan International School" loading="lazy"></button></div>
     </div>
   </article>
 
