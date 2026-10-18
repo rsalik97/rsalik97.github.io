@@ -76,12 +76,13 @@ h1,h2,h3{text-wrap:balance}
 
 /* hero-style cards */
 .hcard{position:relative;border-radius:var(--r);overflow:hidden;isolation:isolate}
-.hcard .nav-row{position:absolute;z-index:6;left:0;right:0;top:0;display:flex;align-items:center;gap:clamp(16px,2.6vw,40px);padding:22px var(--pad)}
+.hcard .nav-row{position:absolute;z-index:6;left:0;right:0;top:0;display:flex;align-items:center;justify-content:flex-end;gap:clamp(16px,2.6vw,40px);padding:22px var(--pad)}
 .brand{font-weight:700;font-size:18px;text-decoration:none;margin-right:auto;display:flex;align-items:center;gap:4px}
 .nav-row .links{display:flex;gap:clamp(16px,2.4vw,34px)}
 .nav-row .links a{text-decoration:none;font-size:14px;font-weight:500;opacity:.9}
 .nav-row .links a:hover{opacity:1;text-decoration:underline;text-underline-offset:6px}
 .sticky{position:fixed;z-index:70;top:calc(14px + env(safe-area-inset-top,0px));left:50%;transform:translate(-50%,-140%);display:flex;align-items:center;gap:22px;padding:8px 8px 8px 22px;background:rgba(23,23,24,.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:99px;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.sticky:not(.on){transform:translate(-50%,-220%);opacity:0;visibility:hidden;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .3s,visibility 0s .5s}
 .sticky.on{transform:translate(-50%,0)}
 .sticky a:not(.pill){text-decoration:none;font-size:14px;font-weight:500;opacity:.85}
 
@@ -298,6 +299,7 @@ footer a{text-decoration:none}
 .w-rt{color:var(--dim);font-variant-numeric:tabular-nums}
 .more-art{margin-top:28px;font-size:15px;color:var(--dim);text-decoration:underline;text-underline-offset:4px}
 .more-art:hover{color:var(--bone)}
+.phone{width:clamp(170px,18vw,280px);aspect-ratio:9/19.5;flex:none;border-radius:clamp(30px,3vw,46px);padding:clamp(7px,.7vw,11px);background:linear-gradient(145deg,#3a3a3c,#0d0d0e 40%,#1c1c1e);box-shadow:inset 0 0 0 1.5px #4a4a4c,0 50px 90px -30px rgba(0,0,0,.85),0 24px 40px -18px rgba(0,0,0,.6);position:relative}
 .phone::before{content:"";position:absolute;z-index:3;top:calc(clamp(7px,.7vw,11px) + 9px);left:50%;transform:translateX(-50%);width:30%;height:clamp(14px,1.6vw,24px);background:#000;border-radius:99px}
 .screen{position:relative;height:100%;border-radius:clamp(24px,2.4vw,36px);overflow:hidden;background:#fff;color:#111;display:flex;flex-direction:column;padding-top:clamp(30px,3.2vw,46px);font-size:clamp(8px,.7vw,11px);line-height:1.35}
 .ig-top{display:flex;align-items:center;gap:7px;padding:6px 9px}
@@ -451,7 +453,6 @@ dialog.viewer::backdrop{background:rgba(0,0,0,.9)}
   <section class="hcard hero" id="hero" aria-label="Introduction">
     <img class="hbg" src="img/hero-bg.webp" srcset="img/hero-bg-sm.webp 1100w, img/hero-bg.webp 2200w" sizes="100vw" alt="Rokhan Salik" width="2200" height="1237">
     <div class="nav-row">
-      <a class="brand" href="#top">Rokhan Salik</a>
       <nav class="links" aria-label="Sections"><a href="#top">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#films">Films</a></nav>
       <a class="pill" href="#contact">Get in touch<i><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg></i></a>
     </div>
